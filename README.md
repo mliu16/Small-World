@@ -22,4 +22,8 @@ A set is a collection of distinct keys, like a symbol table with no values. Set 
 [Path Finder](http://introcs.cs.princeton.edu/java/45graph/)
 Given two vertices in a graph, a path is a sequence of edgesconnecting them. Ashortestpathis one with minimal length over all such paths (there typicallyare multiple shortest paths).Runs breadth first search algorithm from source s on a graph G. After preprocessing the graph, can process shortest path queries from s to any vertex t.
 
+Queue
+[Queue](http://introcs.cs.princeton.edu/java/43stack/)
+Queue is a collection that is based on the first-in-first-out (FIFO) policy. The policy of doing tasks in the same order that they arrive is one that we encounter frequently in everyday life, from people waiting in line at a theater, to cars waiting in line at a toll booth, to tasks waiting to be serviced by an application on your computer.
+
 
