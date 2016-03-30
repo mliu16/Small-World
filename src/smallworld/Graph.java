@@ -49,7 +49,7 @@ public class Graph {
    
     /**
      * Create a copy constructor for Graph that takes as argument a graph G,
-     * then creates and initializes a new, independent copyof the graph. 
+     * then creates and initializes a new, independent copy of the graph. 
      * Any future changes to G should not affect the newly created graph.     * 
      */
     public Graph(Graph G) {
@@ -68,8 +68,8 @@ public class Graph {
                 addEdge(names[0], names[i]);
             } //for
         } //while
-    } //Graph
-
+    } //Graph   
+  
    /**
      * Number of vertices.
      */
@@ -147,6 +147,15 @@ public class Graph {
         return st.get(v).contains(w);
     } // hasEdge( String, String)
 
+    
+    public void remove(String v, String w) {
+        if(hasEdge(v, w)) {
+            st.get(v).delete(w);
+            st.get(w).delete(v);
+        } //if
+    } //remove(String)
+    
+    
    /**
      * Return a string representation of the graph.
      */
@@ -160,7 +169,7 @@ public class Graph {
             s.append("\n");
         } //for
         return s.toString();
-    } //toString()
+    } //toString()      
 
     public static void main(String[] args) {
         Graph G = new Graph();
