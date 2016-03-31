@@ -87,6 +87,15 @@ public class Graph {
         validateVertex(v);
         return st.get(v).size();
     } //degree ( String )
+    
+    public double averageDegree() {
+        double total = 0;   
+        for(String vertex : this.vertices()) {
+            total += this.degree(vertex);            
+        } //for
+        double average = total/this.V();
+        return average; 
+    } //averageDegree()
 
     /**
      * Add edge v-w to this graph (if it is not already an edge)
