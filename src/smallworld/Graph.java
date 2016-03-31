@@ -64,8 +64,8 @@ public class Graph {
             this.st = newGraph.st;
         } catch (CloneNotSupportedException ex) {
             // do nothing
-        }
-    } //Graph()
+        } //Graph
+    } //Graph()    
     
     /**
      * Create an graph from given input stream using given delimiter.
@@ -277,6 +277,16 @@ public class Graph {
         } //for
     } //writeDotFile()
     
+    //Make a dimand graph
+    public void dimanGraph(int h) {
+        for (int i = 0; i < h - 1; i++) {
+            this.addEdge(makeName(i), makeName(i + 1));            
+        } //for 
+        this.addEdge(makeName(h - 1), makeName(0));
+        for (int i = 0; i < h -2; i++) {
+            this.addEdge(makeName(i), makeName(i + 2));            
+        }
+    } //Graph()
     
     public static void main(String[] args) {
 
