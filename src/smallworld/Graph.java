@@ -2,6 +2,10 @@ package smallworld;
 
 import edu.princeton.cs.In;
 import edu.princeton.cs.StdOut;
+import java.util.ArrayList;
+import java.util.Stack;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * ****************************************************************************
@@ -36,6 +40,9 @@ public class Graph {
 
     // number of edges
     private int E;
+    // number of vertices
+    private int V;   
+    private ArrayList<String>[] adj;
 
     /**
      * Create an empty graph with no vertices or edges.
@@ -44,6 +51,22 @@ public class Graph {
         st = new ST<String, SET<String>>();
     } //Graph()
 
+    /**
+     * Create a copy constructor for Graph that takes as argument a graph G,
+     * then creates and initializes a new, independent copy of the graph. 
+     * Any future changes to G should not affect the newly created graph.     * 
+     */
+    public Graph(Graph G) {
+        try {
+            Graph newGraph = (Graph) G.clone();
+            this.V = newGraph.V();
+            this.E = newGraph.E();
+            this.st = newGraph.st;
+        } catch (CloneNotSupportedException ex) {
+            // do nothing
+        }
+    } //Graph()
+    
     /**
      * Create an graph from given input stream using given delimiter.
      */
@@ -243,7 +266,7 @@ public class Graph {
         }
     } //gridGraph( int )
 
-    //Create dot file
+    //Create dot file for grid graph
     public void writeDotFile(){
         for (String u : this.vertices()) {
             for( String v : this.vertices()) {              
