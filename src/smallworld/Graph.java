@@ -203,7 +203,7 @@ public class Graph {
     }//makeName
     
     private String makeName(int row, int column){
-        return "v" + row + "-" + column;
+        return "r" + row + "c" + column;
     } //makeName ()
 
     //Make a complete graph
@@ -246,16 +246,9 @@ public class Graph {
     //Create graph
     public void writeDotFile(){
         for (String u : this.vertices()) {
-            for( String v : this.vertices()) {
-                String a = u;
-                String b = v;
-                if(u.compareTo(v) < 0){
-                    a = v;
-                    b = u;
-                } //if
-                
-                if(this.hasEdge(a, b)){
-                    System.out.println(a + "->" + b + ":");
+            for( String v : this.vertices()) {              
+                if((u.compareTo(v) < 0) && (this.hasEdge(u, v))) { 
+                    System.out.println(u + "->" + v + ":");
                 } //if
             } //for
         } //for
@@ -268,6 +261,7 @@ public class Graph {
         G.gridGraph(4);
 //        System.out.println(G.averageLength());
         System.out.println(G);
+        G.writeDotFile();
 
 //        Graph G = new Graph();
 //        G.addEdge("A", "B");
