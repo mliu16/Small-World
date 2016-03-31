@@ -14,7 +14,7 @@ import java.util.Stack;
  *  After preprocessing the graph, can process shortest path queries
  *  from s to any vertex t.
  *
- *  % java PathFinder routes.txt " " JFK
+ *  % java PathFinder routes.txt " " JFK (argument)
  *  LAX
  *     JFK
  *     ORD
@@ -65,8 +65,15 @@ public class PathFinder {
     // is v reachable from the source s?
     public boolean hasPathTo(String v) {
         return dist.contains(v);
-    }
+    } // hasPathTo( String )   
+    
 
+    //
+    public boolean averageDistance(String v){
+        return dist.contains(v);
+    } //averageDistance()   
+
+    
     // return the length of the shortest path from v to s
     public int distanceTo(String v) {
         if (!hasPathTo(v)) return Integer.MAX_VALUE;
@@ -96,9 +103,9 @@ public class PathFinder {
         PathFinder pf = new PathFinder(G, s);
         
         
-        
-        pf.report( "JFK" );
-        pf.report( "MCO" );
+        pf.report("Amy");
+//        pf.report( "JFK" );
+//        pf.report( "MCO" );
         
     } // main( String [] )
 
