@@ -243,7 +243,7 @@ public class Graph {
         }
     } //gridGraph( int )
 
-    //Create graph
+    //Create dot file
     public void writeDotFile(){
         for (String u : this.vertices()) {
             for( String v : this.vertices()) {              
