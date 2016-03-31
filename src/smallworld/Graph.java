@@ -243,8 +243,22 @@ public class Graph {
         }
     } //gridGraph( int )
 
+    //Create graph
     public void writeDotFile(){
-        
+        for (String u : this.vertices()) {
+            for( String v : this.vertices()) {
+                String a = u;
+                String b = v;
+                if(u.compareTo(v) < 0){
+                    a = v;
+                    b = u;
+                } //if
+                
+                if(this.hasEdge(a, b)){
+                    System.out.println(a + "->" + b + ":");
+                } //if
+            } //for
+        } //for
     } //writeDotFile()
     
     
