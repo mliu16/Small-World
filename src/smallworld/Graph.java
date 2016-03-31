@@ -96,6 +96,25 @@ public class Graph {
         double average = total / this.V();
         return average;
     } //averageDegree()
+    
+    //average distance:  
+    public double averageLength() {
+        double grandTotal = 0;
+        int counter = 0;
+        for (String vertex : this.vertices()) {
+            PathFinder pf = new PathFinder(this, vertex);
+            int total = 0;
+            for(String othervertex : this.vertices()) {
+                if (vertex.equals(othervertex)) break;
+                counter ++;
+                total += pf.distanceTo(othervertex);
+            } //for
+            total /= (this.V() - 1);
+            grandTotal += total;
+        } //for
+        double average = grandTotal / counter;
+        return average;
+    } //averageDegree()
 
     /**
      * Add edge v-w to this graph (if it is not already an edge)
@@ -182,6 +201,10 @@ public class Graph {
     private String makeName(int a) {
         return "v" + a;
     }//makeName
+    
+    private String makeName(int row, int column){
+        return "v" + row + "-" + column;
+    } //makeName ()
 
     //Make a complete graph
     public void completeGraph(int v) {
@@ -199,17 +222,43 @@ public class Graph {
         } //for 
         this.addEdge(makeName(r - 1), makeName(0));
     } //Graph()
+    
+    public void gridGraph(int n) {
+        for(int i = 0; i < n - 1; i ++) {
+            for(int j = 0; j < n - 1; j++) {
+                this.addEdge(makeName(i, j),makeName(i, j + 1));
+                this.addEdge(makeName(i, j), makeName(i + 1, j));
+                
+            } //for
+        } //for
+        
+        //complete right-most edges
+        for(int i = 0; i < n - 1; i++) {
+            this.addEdge(makeName(i, n - 1), makeName(i + 1, n - 1));
+        } //for
+        
+        //compete bottom-most edges
+        for(int i = 0; i < n - 1; i++) {
+            this.addEdge(makeName(n - 1, i), makeName(n - 1, i + 1));
+        }
+    } //gridGraph( int )
 
+    public void writeDotFile(){
+        
+    } //writeDotFile()
+    
+    
     public static void main(String[] args) {
 
         Graph G = new Graph();
-        G.ringGraph(4);
+        G.gridGraph(4);
+//        System.out.println(G.averageLength());
         System.out.println(G);
 
 //        Graph G = new Graph();
 //        G.addEdge("A", "B");
 //        G.addEdge("A", "C");
-//        G.addEdge("C", "D");
+//        G.addEdge("C", "D");}
 //        G.addEdge("D", "E");
 //        G.addEdge("D", "G");
 //        G.addEdge("E", "G");
@@ -227,6 +276,6 @@ public class Graph {
 //            StdOut.println();
 //        } //for
 //
-//    } //main( String, args)
+    } //main( String, args)
 //  
     } //Graph
