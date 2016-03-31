@@ -3,7 +3,6 @@ package smallworld;
 import edu.princeton.cs.In;
 import edu.princeton.cs.StdOut;
 
-
 /**
  * ****************************************************************************
  * Compilation: javac Graph.java Execution: java Graph Dependencies: ST.java
@@ -36,7 +35,7 @@ public class Graph {
     private ST<String, SET<String>> st;
 
     // number of edges
-    private int E;   
+    private int E;
 
     /**
      * Create an empty graph with no vertices or edges.
@@ -87,14 +86,15 @@ public class Graph {
         validateVertex(v);
         return st.get(v).size();
     } //degree ( String )
-    
+
+    //average degree: total number of adges divided by number of vertices
     public double averageDegree() {
-        double total = 0;   
-        for(String vertex : this.vertices()) {
-            total += this.degree(vertex);            
+        double total = 0;
+        for (String vertex : this.vertices()) {
+            total += this.degree(vertex);
         } //for
-        double average = total/this.V();
-        return average; 
+        double average = total / this.V();
+        return average;
     } //averageDegree()
 
     /**
@@ -180,25 +180,32 @@ public class Graph {
     } //toString()      
 
     private String makeName(int a) {
-        return "v" + a; 
+        return "v" + a;
     }//makeName
-    
+
     //Make a complete graph
-    public void completeGraph(int v){
-        for(int i = 0; i < v; i++) {
-            for(int j = i + 1; j < v; j++) {
+    public void completeGraph(int v) {
+        for (int i = 0; i < v; i++) {
+            for (int j = i + 1; j < v; j++) {
                 this.addEdge(makeName(i), makeName(j));
             } //for
         } //for 
     } //Graph()
-    
+
+    //Make a ring graph
+    public void ringGraph(int r) {
+        for (int i = 0; i < r - 1; i++) {
+            this.addEdge(makeName(i), makeName(i + 1));
+        } //for 
+        this.addEdge(makeName(r - 1), makeName(0));
+    } //Graph()
+
     public static void main(String[] args) {
-        
+
         Graph G = new Graph();
-        G.completeGraph(4);        
+        G.ringGraph(4);
         System.out.println(G);
-        
-    
+
 //        Graph G = new Graph();
 //        G.addEdge("A", "B");
 //        G.addEdge("A", "C");
@@ -222,4 +229,4 @@ public class Graph {
 //
 //    } //main( String, args)
 //  
-} //Graph
+    } //Graph
