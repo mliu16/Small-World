@@ -209,6 +209,7 @@ public class Graph {
     /**
      * Return a string representation of the graph.
      */
+    @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
         for (String v : st) {
@@ -246,6 +247,8 @@ public class Graph {
         this.addEdge(makeName(r - 1), makeName(0));
     } //Graph()
     
+    
+    //Make a grid graph
     public void gridGraph(int n) {
         for(int i = 0; i < n - 1; i ++) {
             for(int j = 0; j < n - 1; j++) {
@@ -277,24 +280,26 @@ public class Graph {
         } //for
     } //writeDotFile()
     
-    //Make a dimand graph
-    public void dimanGraph(int h) {
-        for (int i = 0; i < h - 1; i++) {
-            this.addEdge(makeName(i), makeName(i + 1));            
-        } //for 
-        this.addEdge(makeName(h - 1), makeName(0));
-        for (int i = 0; i < h -2; i++) {
+    //make a second level ring graph
+    public void secondLevelRingGraph(int h) { 
+        for (int i = 0; i < h - 2; i++) {
+            this.addEdge(makeName(i), makeName(i + 1));
             this.addEdge(makeName(i), makeName(i + 2));            
-        }
-    } //Graph()
-    
+        } //for
+        this.addEdge(makeName(h - 2), makeName(h - 1));
+        this.addEdge(makeName(h - 1), makeName(0));
+        this.addEdge(makeName(h - 2), makeName(0));
+        this.addEdge(makeName(h - 1), makeName(1));
+    } //Graph()   
+   
+ 
     public static void main(String[] args) {
 
         Graph G = new Graph();
-        G.gridGraph(4);
+        G.secondLevelRingGraph(6);
 //        System.out.println(G.averageLength());
         System.out.println(G);
-        G.writeDotFile();
+//        G.writeDotFile();
 
 //        Graph G = new Graph();
 //        G.addEdge("A", "B");
