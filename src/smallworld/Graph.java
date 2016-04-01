@@ -126,13 +126,13 @@ public class Graph {
         int counter = 0;
         int total = 0;
         for (String vertex : this.vertices()) {
-            PathFinder pf = new PathFinder(this, vertex);            
+            PathFinder pf = new PathFinder(this, vertex);
             for (String othervertex : this.vertices()) {
                 if (vertex.equals(othervertex)) {
-                    break;                   
+                    break;
                 } //if
                 counter++;
-                total += pf.distanceTo(othervertex);                
+                total += pf.distanceTo(othervertex);
             } //for   
         } //for
         double average = (double) total / counter;
@@ -141,20 +141,20 @@ public class Graph {
         System.out.println("Average path length " + average);
         return average;
     } //averageDegree()
-    
+
     //clust coefficient: total number of short distance / total number of short path  
     public double clusterCoefficient() {
         double grandTotal = 0;
         int counter = 0;
         int total = 0;
         for (String vertex : this.vertices()) {
-            PathFinder pf = new PathFinder(this, vertex);            
+            PathFinder pf = new PathFinder(this, vertex);
             for (String othervertex : this.vertices()) {
                 if (vertex.equals(othervertex)) {
-                    break;                   
+                    break;
                 } //if
                 counter++;
-                total += pf.distanceTo(othervertex);                
+                total += pf.distanceTo(othervertex);
             } //for   
         } //for
         double average = (double) total / counter;
@@ -311,25 +311,43 @@ public class Graph {
             this.addEdge(makeName(i), makeName(i + 2));
         } //for
         this.addEdge(makeName(h - 2), makeName(h - 1));
-        this.addEdge(makeName(h - 1), makeName(0));
         this.addEdge(makeName(h - 2), makeName(0));
+        this.addEdge(makeName(h - 1), makeName(0));
         this.addEdge(makeName(h - 1), makeName(1));
     } //Graph()   
 
-    //make a star graph
-    public void starGraph(int s) {
+    //draw three circle graph
+    public void threeCircleGraph(int h) {
+        for (int i = 0; i < h - 3; i++) {
+            this.addEdge(makeName(i), makeName(i + 1));
+            this.addEdge(makeName(i), makeName(i + 2));
+            this.addEdge(makeName(i), makeName(i + 3));
+        } //for
+        this.addEdge(makeName(h - 3), makeName(h - 2));
+        this.addEdge(makeName(h - 3), makeName(h - 1));
+        this.addEdge(makeName(h - 3), makeName(0));
+        this.addEdge(makeName(h - 2), makeName(h - 1));
+        this.addEdge(makeName(h - 2), makeName(0));
+        this.addEdge(makeName(h - 2), makeName(1));
+        this.addEdge(makeName(h - 1), makeName(0));
+        this.addEdge(makeName(h - 1), makeName(1));
+        this.addEdge(makeName(h - 1), makeName(2));
+    } //threeCircleGraph( int )    
+
+//make a star graph
+public void starGraph(int s) {
         int globleCluster = (int) ((int) 1 + (Math.random() * (s - 1)));
         if (globleCluster == 0) {
             for (int i = 0; i < s - 1; i++) {
                 this.addEdge(makeName(0), makeName(i + 1));
             } //for
         } //if
-        else{
+        else {
             for (int i = 0; i < s - globleCluster - 1; i++) {
                 this.addEdge(makeName(globleCluster), makeName(globleCluster + i + 1));
             }//for
-            for (int i = 0; i < globleCluster; i++ ) {
-                this.addEdge(makeName(globleCluster), makeName(i ));
+            for (int i = 0; i < globleCluster; i++) {
+                this.addEdge(makeName(globleCluster), makeName(i));
             }//for
         } //else        
         System.out.println("Globle cluster: " + globleCluster);
@@ -338,10 +356,10 @@ public class Graph {
     public static void main(String[] args) {
 
         Graph G = new Graph();
-        G.twoCircleGraph(4);        
+        G.threeCircleGraph(6);
         System.out.println(G);
-        System.out.println(G.averageDegree());
-        System.out.println(G.averageLength());
+//        System.out.println(G.averageDegree());
+//        System.out.println(G.averageLength());
 //        G.writeDotFile();
 
 //        Graph G = new Graph();
