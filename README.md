@@ -2,7 +2,7 @@
 
 ### Graph
 [Graph](http://introcs.cs.princeton.edu/java/45graph/)
-A graph is comprised of a set of vertices and a set of edges. Each edge represents a connection between two vertices. Two vertices are neighbors if they are connected by an edge, and the degree of a vertex is its number of neighbors. We often visualize graphs by drawing labelled geometric shapes (vertices) connected by lines (edges), but it is always important to remember that it is the connections that are essential, not the way we depict them.
+ is comprised of a set of vertices and a set of edges. Each edge represents a connection between two vertices. Two vertices are neighbors if they are connected by an edge, and the degree of a vertex is its number of neighbors. We often visualize graphs by drawing labelled geometric shapes (vertices) connected by lines (edges), but it is always important to remember that it is the connections that are essential, not the way we depict them.
 Diverse range of system where graphs are appropriate starting points for understanding structure: Human biology, Social network, Physical systems, Transportation systems, Communications systems, Resource distribution, Mechanical systems, Software systems, Financial systems.
 
 ### Small-World
@@ -12,11 +12,11 @@ Some graphs exhibit a specific property known as the small-world phenomenon. You
 
 ### ST (Symbol Table)
 [Symbol Table](http://introcs.cs.princeton.edu/java/44st/)
-A symbol table is a data type used to associate values with keys. In the other words, symbol table is a collection of key-value pairs. Sorted symbol table implementation using a java.util.TreeMap. It does not allow duplicates.
+ is a data type used to associate values with keys. In the other words, symbol table is a collection of key-value pairs. Sorted symbol table implementation using a java.util.TreeMap. It does not allow duplicates.
 
 ### SET (Set Data Type)
 [Set Data Type](http://introcs.cs.princeton.edu/java/44st/)
-A set is a collection of distinct keys, like a symbol table with no values. Set implementation using Java’s TreeSet library. It does not allow duplicates.
+is a collection of distinct keys, like a symbol table with no values. Set implementation using Java’s TreeSet library. It does not allow duplicates.
 
 ### Path Finder
 [Path Finder](http://introcs.cs.princeton.edu/java/45graph/)
@@ -24,6 +24,6 @@ Given two vertices in a graph, a path is a sequence of edgesconnecting them. Ash
 
 ### Queue
 [Queue](http://introcs.cs.princeton.edu/java/43stack/)
-Queue is a collection that is based on the first-in-first-out (FIFO) policy. The policy of doing tasks in the same order that they arrive is one that we encounter frequently in everyday life, from people waiting in line at a theater, to cars waiting in line at a toll booth, to tasks waiting to be serviced by an application on your computer.
+is a collection that is based on the first-in-first-out (FIFO) policy. The policy of doing tasks in the same order that they arrive is one that we encounter frequently in everyday life, from people waiting in line at a theater, to cars waiting in line at a toll booth, to tasks waiting to be serviced by an application on your computer.
 
 
