@@ -41,7 +41,7 @@ public class Graph {
     // number of edges
     private int E;
     // number of vertices
-    private int V;   
+    private int V;
     private ArrayList<String>[] adj;
 
     /**
@@ -53,8 +53,8 @@ public class Graph {
 
     /**
      * Create a copy constructor for Graph that takes as argument a graph G,
-     * then creates and initializes a new, independent copy of the graph. 
-     * Any future changes to G should not affect the newly created graph.     * 
+     * then creates and initializes a new, independent copy of the graph. Any
+     * future changes to G should not affect the newly created graph. *
      */
     public Graph(Graph G) {
         try {
@@ -66,7 +66,7 @@ public class Graph {
             // do nothing
         } //Graph
     } //Graph()    
-    
+
     /**
      * Create an graph from given input stream using given delimiter.
      */
@@ -119,7 +119,7 @@ public class Graph {
         double average = total / this.V();
         return average;
     } //averageDegree()
-    
+
     //average distance:  
     public double averageLength() {
         double grandTotal = 0;
@@ -127,9 +127,11 @@ public class Graph {
         for (String vertex : this.vertices()) {
             PathFinder pf = new PathFinder(this, vertex);
             int total = 0;
-            for(String othervertex : this.vertices()) {
-                if (vertex.equals(othervertex)) break;
-                counter ++;
+            for (String othervertex : this.vertices()) {
+                if (vertex.equals(othervertex)) {
+                    break;
+                }
+                counter++;
                 total += pf.distanceTo(othervertex);
             } //for
             total /= (this.V() - 1);
@@ -225,8 +227,8 @@ public class Graph {
     private String makeName(int a) {
         return "v" + a;
     }//makeName
-    
-    private String makeName(int row, int column){
+
+    private String makeName(int row, int column) {
         return "r" + row + "c" + column;
     } //makeName ()
 
@@ -246,57 +248,74 @@ public class Graph {
         } //for 
         this.addEdge(makeName(r - 1), makeName(0));
     } //Graph()
-    
-    
+
     //Make a grid graph
     public void gridGraph(int n) {
-        for(int i = 0; i < n - 1; i ++) {
-            for(int j = 0; j < n - 1; j++) {
-                this.addEdge(makeName(i, j),makeName(i, j + 1));
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - 1; j++) {
+                this.addEdge(makeName(i, j), makeName(i, j + 1));
                 this.addEdge(makeName(i, j), makeName(i + 1, j));
-                
+
             } //for
         } //for
-        
+
         //complete right-most edges
-        for(int i = 0; i < n - 1; i++) {
+        for (int i = 0; i < n - 1; i++) {
             this.addEdge(makeName(i, n - 1), makeName(i + 1, n - 1));
         } //for
-        
+
         //compete bottom-most edges
-        for(int i = 0; i < n - 1; i++) {
+        for (int i = 0; i < n - 1; i++) {
             this.addEdge(makeName(n - 1, i), makeName(n - 1, i + 1));
         }
     } //gridGraph( int )
 
     //Create dot file for grid graph
-    public void writeDotFile(){
+    public void writeDotFile() {
         for (String u : this.vertices()) {
-            for( String v : this.vertices()) {              
-                if((u.compareTo(v) < 0) && (this.hasEdge(u, v))) { 
+            for (String v : this.vertices()) {
+                if ((u.compareTo(v) < 0) && (this.hasEdge(u, v))) {
                     System.out.println(u + "->" + v + ":");
                 } //if
             } //for
         } //for
     } //writeDotFile()
-    
+
     //make a second level ring graph
-    public void secondLevelRingGraph(int h) { 
+    public void secondLevelRingGraph(int h) {
         for (int i = 0; i < h - 2; i++) {
             this.addEdge(makeName(i), makeName(i + 1));
-            this.addEdge(makeName(i), makeName(i + 2));            
+            this.addEdge(makeName(i), makeName(i + 2));
         } //for
         this.addEdge(makeName(h - 2), makeName(h - 1));
         this.addEdge(makeName(h - 1), makeName(0));
         this.addEdge(makeName(h - 2), makeName(0));
         this.addEdge(makeName(h - 1), makeName(1));
     } //Graph()   
-   
- 
+
+    //make a star graph
+    public void starGraph(int s) {
+        int globleCluster = (int) ((int) 1 + (Math.random() * (s - 1)));
+        if (globleCluster == 0) {
+            for (int i = 0; i < s - 1; i++) {
+                this.addEdge(makeName(0), makeName(i + 1));
+            } //for
+        } //if
+        else{
+            for (int i = 0; i < s - globleCluster - 1; i++) {
+                this.addEdge(makeName(globleCluster), makeName(globleCluster + i + 1));
+            }//for
+            for (int i = 0; i < globleCluster; i++ ) {
+                this.addEdge(makeName(globleCluster), makeName(i ));
+            }//for
+        } //else        
+        System.out.println("Globle cluster: " + globleCluster);
+    } //starGraph( int )
+
     public static void main(String[] args) {
 
         Graph G = new Graph();
-        G.secondLevelRingGraph(6);
+        G.starGraph(4);
 //        System.out.println(G.averageLength());
         System.out.println(G);
 //        G.writeDotFile();
@@ -324,4 +343,4 @@ public class Graph {
 //
     } //main( String, args)
 //  
-    } //Graph
+} //Graph
