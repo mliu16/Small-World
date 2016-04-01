@@ -141,6 +141,28 @@ public class Graph {
         System.out.println("Average path length " + average);
         return average;
     } //averageDegree()
+    
+    //clust coefficient: total number of short distance / total number of short path  
+    public double clusterCoefficient() {
+        double grandTotal = 0;
+        int counter = 0;
+        int total = 0;
+        for (String vertex : this.vertices()) {
+            PathFinder pf = new PathFinder(this, vertex);            
+            for (String othervertex : this.vertices()) {
+                if (vertex.equals(othervertex)) {
+                    break;                   
+                } //if
+                counter++;
+                total += pf.distanceTo(othervertex);                
+            } //for   
+        } //for
+        double average = (double) total / counter;
+        System.out.println("Total " + total);
+        System.out.println("Counter " + counter);
+        System.out.println("Average path length " + average);
+        return average;
+    } //averageDegree()
 
     /**
      * Add edge v-w to this graph (if it is not already an edge)
@@ -283,7 +305,7 @@ public class Graph {
     } //writeDotFile()
 
     //make a second level ring graph
-    public void secondLevelRingGraph(int h) {
+    public void twoCircleGraph(int h) {
         for (int i = 0; i < h - 2; i++) {
             this.addEdge(makeName(i), makeName(i + 1));
             this.addEdge(makeName(i), makeName(i + 2));
@@ -316,7 +338,7 @@ public class Graph {
     public static void main(String[] args) {
 
         Graph G = new Graph();
-        G.ringGraph(4);        
+        G.twoCircleGraph(4);        
         System.out.println(G);
         System.out.println(G.averageDegree());
         System.out.println(G.averageLength());
