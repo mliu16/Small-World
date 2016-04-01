@@ -103,7 +103,7 @@ public class Graph {
     } //validateVertex( String )
 
     /**
-     * Degree of this vertex: how many adges attaching to it.
+     * Degree of this vertex: how many adge attached.
      */
     public int degree(String v) {
         validateVertex(v);
@@ -120,24 +120,25 @@ public class Graph {
         return average;
     } //averageDegree()
 
-    //average distance:  
+    //average distance: total number of short distance / total number of short path  
     public double averageLength() {
         double grandTotal = 0;
         int counter = 0;
+        int total = 0;
         for (String vertex : this.vertices()) {
-            PathFinder pf = new PathFinder(this, vertex);
-            int total = 0;
+            PathFinder pf = new PathFinder(this, vertex);            
             for (String othervertex : this.vertices()) {
                 if (vertex.equals(othervertex)) {
-                    break;
-                }
+                    break;                   
+                } //if
                 counter++;
-                total += pf.distanceTo(othervertex);
-            } //for
-            total /= (this.V() - 1);
-            grandTotal += total;
+                total += pf.distanceTo(othervertex);                
+            } //for   
         } //for
-        double average = grandTotal / counter;
+        double average = (double) total / counter;
+        System.out.println("Total " + total);
+        System.out.println("Counter " + counter);
+        System.out.println("Average path length " + average);
         return average;
     } //averageDegree()
 
@@ -315,9 +316,10 @@ public class Graph {
     public static void main(String[] args) {
 
         Graph G = new Graph();
-        G.starGraph(4);
-//        System.out.println(G.averageLength());
+        G.ringGraph(4);        
         System.out.println(G);
+        System.out.println(G.averageDegree());
+        System.out.println(G.averageLength());
 //        G.writeDotFile();
 
 //        Graph G = new Graph();
